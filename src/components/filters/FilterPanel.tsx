@@ -65,7 +65,7 @@ export function FilterPanel({
 
         <Select
           id="year"
-          label="Year"
+          label="From year"
           value={filters.year}
           disabled={isSpinning}
           onChange={(event) => updateFilter('year', event.target.value)}
