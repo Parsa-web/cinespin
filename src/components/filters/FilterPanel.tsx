@@ -12,7 +12,7 @@ interface FilterPanelProps {
   onSpin: (filters: MovieFilters) => Promise<void>
 }
 
-const ratingOptions = ['5', '6', '7', '8']
+const ratingOptions = Array.from({ length: 10 }, (_, i) => String(5 + i * 0.5))
 
 export function FilterPanel({
   genres,
