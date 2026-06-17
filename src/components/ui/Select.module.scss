@@ -1,0 +1,40 @@
+.field {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.field span {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.field select {
+  width: 100%;
+  min-height: 3.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 2.4rem 0.85rem 0.95rem;
+  background:
+    linear-gradient(45deg, transparent 50%, var(--color-muted) 50%) calc(100% - 18px)
+      calc(50% - 3px) / 6px 6px no-repeat,
+    linear-gradient(135deg, transparent 50%, var(--color-muted) 50%) calc(100% - 12px)
+      calc(50% - 3px) / 6px 6px no-repeat,
+    var(--color-surface-elevated);
+  color: var(--color-text);
+  appearance: none;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.field select:focus {
+  border-color: rgb(245 196 81 / 75%);
+  box-shadow: 0 0 0 4px rgb(245 196 81 / 13%);
+  outline: 0;
+}
+
+.field select:disabled {
+  opacity: 0.65;
+}

@@ -1,0 +1,22 @@
+.message {
+  display: grid;
+  gap: 0.3rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  background: rgb(20 26 42 / 72%);
+  color: var(--color-muted);
+}
+
+.message strong {
+  color: var(--color-text);
+}
+
+.error {
+  border-color: rgb(255 107 107 / 42%);
+  background: rgb(255 107 107 / 10%);
+}
+
+.error strong {
+  color: var(--color-error);
+}

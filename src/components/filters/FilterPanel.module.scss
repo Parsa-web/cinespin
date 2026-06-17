@@ -1,0 +1,38 @@
+.panel {
+  display: grid;
+  gap: 1.2rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1rem, 3vw, 1.5rem);
+  background: rgb(20 26 42 / 82%);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.spinButton {
+  width: 100%;
+  font-size: 1.05rem;
+}
+
+@media (min-width: 740px) {
+  .controls {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 960px) {
+  .panel {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+
+  .spinButton {
+    width: 11rem;
+  }
+}
