@@ -7,8 +7,8 @@ export function Hero() {
       <h1>CineSpin</h1>
       <p className={styles.subtitle}>Let fate choose your next movie.</p>
       <p className={styles.description}>
-        Pick a mood, a year, and a rating floor. CineSpin searches TMDB, rolls through
-        real result pages, and hands you one polished recommendation instead of another
+        Pick a year and CineSpin searches TMDB for movies from that year to today. It rolls
+        through real result pages and hands you one polished recommendation instead of another
         endless scroll.
       </p>
     </header>

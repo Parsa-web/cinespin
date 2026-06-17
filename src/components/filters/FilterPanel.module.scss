@@ -19,12 +19,6 @@
   font-size: 1.05rem;
 }
 
-@media (min-width: 740px) {
-  .controls {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
 @media (min-width: 960px) {
   .panel {
     grid-template-columns: 1fr auto;
