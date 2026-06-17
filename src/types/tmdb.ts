@@ -60,5 +60,7 @@ export interface MovieRecommendation {
 }
 
 export interface MovieFilters {
+  genreId: string
   year: string
+  minimumRating: string
 }

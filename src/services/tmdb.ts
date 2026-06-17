@@ -73,8 +73,10 @@ export async function discoverMovies(
         include_adult: false,
         include_video: false,
         'vote_count.gte': 80,
+        with_genres: filters.genreId || undefined,
         'primary_release_date.gte': filters.year ? `${filters.year}-01-01` : undefined,
         'primary_release_date.lte': filters.year ? `${new Date().getFullYear()}-12-31` : undefined,
+        'vote_average.gte': filters.minimumRating || undefined,
       },
     })
 

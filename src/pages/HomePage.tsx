@@ -8,7 +8,7 @@ import { useMovieDiscovery } from '../hooks/useMovieDiscovery'
 import styles from './HomePage.module.scss'
 
 export function HomePage() {
-  const { recommendation, isSpinning, error, spin } =
+  const { genres, recommendation, isLoadingGenres, isSpinning, error, spin } =
     useMovieDiscovery()
 
   return (
@@ -22,6 +22,8 @@ export function HomePage() {
             <p>Keep it broad for surprise, or narrow the field for the exact mood.</p>
           </div>
           <FilterPanel
+            genres={genres}
+            isLoadingGenres={isLoadingGenres}
             isSpinning={isSpinning}
             onSpin={spin}
           />

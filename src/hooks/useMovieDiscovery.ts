@@ -1,16 +1,19 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {
   discoverMovies,
+  getGenres,
   getMovieCredits,
   getMovieDetails,
 } from '../services/tmdb'
-import type { MovieFilters, MovieRecommendation } from '../types/tmdb'
+import type { Genre, MovieFilters, MovieRecommendation } from '../types/tmdb'
 import { pickRandomItem, randomInteger } from '../utils/random'
 
 const TMDB_MAX_PAGE = 500
 
 interface MovieDiscoveryState {
+  genres: Genre[]
   recommendation: MovieRecommendation | null
+  isLoadingGenres: boolean
   isSpinning: boolean
   error: string | null
 }
@@ -21,9 +24,41 @@ interface MovieDiscoveryActions {
 }
 
 export function useMovieDiscovery(): MovieDiscoveryState & MovieDiscoveryActions {
+  const [genres, setGenres] = useState<Genre[]>([])
   const [recommendation, setRecommendation] = useState<MovieRecommendation | null>(null)
+  const [isLoadingGenres, setIsLoadingGenres] = useState(true)
   const [isSpinning, setIsSpinning] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    let isMounted = true
+
+    async function loadGenres(): Promise<void> {
+      try {
+        const response = await getGenres()
+
+        if (isMounted) {
+          setGenres(response.genres)
+        }
+      } catch (genreError) {
+        if (isMounted) {
+          setError(
+            genreError instanceof Error ? genreError.message : 'Unable to load genres.',
+          )
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoadingGenres(false)
+        }
+      }
+    }
+
+    void loadGenres()
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
 
   const clearError = useCallback(() => {
     setError(null)
@@ -79,7 +114,9 @@ export function useMovieDiscovery(): MovieDiscoveryState & MovieDiscoveryActions
   }, [])
 
   return {
+    genres,
     recommendation,
+    isLoadingGenres,
     isSpinning,
     error,
     spin,
