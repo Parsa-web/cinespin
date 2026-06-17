@@ -74,8 +74,14 @@ export async function discoverMovies(
         include_video: false,
         'vote_count.gte': 80,
         with_genres: filters.genreId || undefined,
-        'primary_release_date.gte': filters.year ? `${filters.year}-01-01` : undefined,
-        'primary_release_date.lte': filters.year ? `${new Date().getFullYear()}-12-31` : undefined,
+        ...(filters.year
+          ? filters.yearMode === 'exact'
+            ? { primary_release_year: filters.year }
+            : {
+                'primary_release_date.gte': `${filters.year}-01-01`,
+                'primary_release_date.lte': `${new Date().getFullYear()}-12-31`,
+              }
+          : {}),
         'vote_average.gte': filters.minimumRating || undefined,
       },
     })

@@ -23,6 +23,7 @@ export function FilterPanel({
   const [filters, setFilters] = useState<MovieFilters>({
     genreId: '',
     year: '',
+    yearMode: 'from',
     minimumRating: '6',
   })
 
@@ -63,20 +64,42 @@ export function FilterPanel({
           ))}
         </Select>
 
-        <Select
-          id="year"
-          label="From year"
-          value={filters.year}
-          disabled={isSpinning}
-          onChange={(event) => updateFilter('year', event.target.value)}
-        >
-          <option value="">Any year</option>
-          {years.map((year) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
-        </Select>
+        <div className={styles.yearGroup}>
+          <Select
+            id="year"
+            label="Year"
+            value={filters.year}
+            disabled={isSpinning}
+            onChange={(event) => updateFilter('year', event.target.value)}
+          >
+            <option value="">Any year</option>
+            {years.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </Select>
+
+          <fieldset className={styles.toggle} disabled={!filters.year || isSpinning}>
+            <legend className={styles.visuallyHidden}>Year mode</legend>
+            <button
+              type="button"
+              className={`${styles.toggleBtn} ${filters.yearMode === 'from' ? styles.toggleBtnActive : ''}`}
+              aria-pressed={filters.yearMode === 'from'}
+              onClick={() => updateFilter('yearMode', 'from')}
+            >
+              From
+            </button>
+            <button
+              type="button"
+              className={`${styles.toggleBtn} ${filters.yearMode === 'exact' ? styles.toggleBtnActive : ''}`}
+              aria-pressed={filters.yearMode === 'exact'}
+              onClick={() => updateFilter('yearMode', 'exact')}
+            >
+              Exact
+            </button>
+          </fieldset>
+        </div>
 
         <Select
           id="minimum-rating"

@@ -14,6 +14,68 @@
   gap: 1rem;
 }
 
+.yearGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.toggle {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  gap: 0;
+}
+
+.toggle:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.toggleBtn {
+  flex: 1;
+  min-height: 2.25rem;
+  border: 1px solid var(--color-border);
+  background: rgb(255 255 255 / 4%);
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.toggleBtn:first-child {
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+
+.toggleBtn:last-child {
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.toggleBtn:focus-visible {
+  outline: 2px solid rgb(245 196 81 / 42%);
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.toggleBtnActive {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: #15100a;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
 .spinButton {
   width: 100%;
   font-size: 1.05rem;
@@ -22,6 +84,27 @@
 @media (min-width: 740px) {
   .controls {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .yearGroup {
+    flex-direction: row;
+    align-items: end;
+    gap: 0.75rem;
+  }
+
+  .yearGroup > :first-child {
+    flex: 1;
+  }
+
+  .toggle {
+    flex: 0 0 auto;
+    padding-bottom: 0.15rem;
+  }
+
+  .toggleBtn {
+    min-height: 2.5rem;
+    padding: 0 0.75rem;
+    font-size: 0.78rem;
   }
 }
 
